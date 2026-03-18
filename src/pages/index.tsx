@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
+import MetaMaskAuth from "@/components/MetaMaskAuth";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -11,68 +11,82 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Icon Components
+const FlaskIcon = () => (
+  <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+  </svg>
+);
+
 export default function Home() {
   return (
     <div
-      className={`${geistSans.className} ${geistMono.className} flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black`}
+      className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen items-center justify-center p-8 font-sans`}
     >
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the index.tsx file.
+      <div className="glass-card flex w-full max-w-xl flex-col items-center gap-8 p-12 text-center">
+        {/* Logo & Badge */}
+        <div className="flex flex-col items-center gap-4">
+          <div className="p-4 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 shadow-lg shadow-orange-500/30">
+            <FlaskIcon />
+          </div>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            Blockchain Secured
+          </div>
+        </div>
+
+        {/* Title & Description */}
+        <div className="space-y-4">
+          <h1 className="text-4xl font-bold">
+            <span className="bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
+              PKM-KC
+            </span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-zinc-400 text-lg leading-relaxed">
+            Perangkat Pintar Deteksi Dini Gas Beracun Akibat Pencampuran Kimia Rumah Tangga Berbasis Artificial Neural Network Terintegrasi Web3
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs/pages/getting-started?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Features */}
+        <div className="grid grid-cols-3 gap-3 w-full">
+          {[
+            { icon: "⚗️", label: "Deteksi Bahaya" },
+            { icon: "🏆", label: "Sertifikat NFT" },
+            { icon: "🔗", label: "Blockchain Record" },
+          ].map((feature, i) => (
+            <div key={i} className="flex flex-col items-center gap-2 p-3 rounded-xl bg-white/5">
+              <span className="text-2xl">{feature.icon}</span>
+              <span className="text-xs text-zinc-400">{feature.label}</span>
+            </div>
+          ))}
         </div>
-      </main>
+
+        {/* MetaMask Auth */}
+        <div className="w-full pt-4 border-t border-white/5">
+          <MetaMaskAuth />
+        </div>
+
+        {/* Network Info */}
+        <div className="grid grid-cols-2 gap-4 w-full pt-4 border-t border-white/5">
+          <div className="flex flex-col gap-1 p-4 rounded-xl bg-white/5 text-left">
+            <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500">Network</span>
+            <span className="text-zinc-200">Polygon Amoy</span>
+          </div>
+          <div className="flex flex-col gap-1 p-4 rounded-xl bg-white/5 text-left">
+            <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500">Status</span>
+            <span className="text-emerald-500 flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+              Live
+            </span>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <p className="text-zinc-600 text-xs">
+          Lindungi keluarga Anda dari bahaya pencampuran bahan kimia
+        </p>
+      </div>
     </div>
   );
 }
+
