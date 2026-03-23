@@ -1,6 +1,6 @@
-# Polygon Amoy MetaMask Auth Web App
+# Rancang Bangun Deteksi dan Peringatan Dini Gas Beracun dari Reaksi Kimia Rumah Tangga Berbasis Jaringan Syaraf Tiruan
 
-Aplikasi web Next.js premium yang terhubung ke blockchain Polygon Amoy melalui ThirdWeb SDK.
+Aplikasi web Next.js premium untuk sistem peringatan dini gas beracun PKM-KC yang terhubung ke blockchain Polygon Amoy melalui ThirdWeb SDK.
 
 ## Fitur Utama
 - ✨ **Premium Design**: Tampilan modern dengan glassmorphism dan animatied gradients.

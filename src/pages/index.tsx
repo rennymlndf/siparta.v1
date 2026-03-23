@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import Head from "next/head";
 import MetaMaskAuth from "@/components/MetaMaskAuth";
 
 const geistSans = Geist({
@@ -20,9 +21,13 @@ const FlaskIcon = () => (
 
 export default function Home() {
   return (
-    <div
-      className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen items-center justify-center p-8 font-sans`}
-    >
+    <>
+      <Head>
+        <title>Rancang Bangun Deteksi dan Peringatan Dini Gas Beracun dari Reaksi Kimia Rumah Tangga Berbasis Jaringan Syaraf Tiruan</title>
+      </Head>
+      <div
+        className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen items-center justify-center p-8 font-sans`}
+      >
       <div className="glass-card flex w-full max-w-xl flex-col items-center gap-8 p-12 text-center">
         {/* Logo & Badge */}
         <div className="flex flex-col items-center gap-4">
@@ -35,7 +40,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Title & Description */}
         <div className="space-y-4">
           <h1 className="text-4xl font-bold">
             <span className="bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
@@ -43,7 +47,7 @@ export default function Home() {
             </span>
           </h1>
           <p className="text-zinc-400 text-lg leading-relaxed">
-            Perangkat Pintar Deteksi Dini Gas Beracun Akibat Pencampuran Kimia Rumah Tangga Berbasis Artificial Neural Network Terintegrasi Web3
+            RANCANG BANGUN DETEKSI DAN PERINGATAN DINI GAS BERACUN DARI REAKSI KIMIA RUMAH TANGGA BERBASIS JARINGAN SYARAF TIRUAN
           </p>
         </div>
 
@@ -86,7 +90,8 @@ export default function Home() {
           Lindungi keluarga Anda dari bahaya pencampuran bahan kimia
         </p>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
 

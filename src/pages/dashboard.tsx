@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { useActiveAccount, useDisconnect, useActiveWallet } from "thirdweb/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import AIChatbot from "@/components/AIChatbot";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -174,18 +175,17 @@ export default function Dashboard() {
                             <span className="h-2 w-2 rounded-full bg-amber-500 animate-pulse" />
                             Powered by Blockchain Technology
                         </div>
-                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+                        <h1 className="text-4xl sm:text-5xl lg:text-5xl font-bold mb-6">
                             <span className="bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
-                                Sistem Peringatan Dini
+                                Rancang Bangun Deteksi dan
                             </span>
                             <br />
                             <span className="text-white">
-                                Bahaya Pencampuran Bahan Kimia
+                                Peringatan Dini Gas Beracun
                             </span>
                         </h1>
-                        <p className="text-lg text-zinc-400 max-w-2xl mx-auto">
-                            Platform berbasis NFT & Blockchain untuk mencegah kecelakaan akibat pencampuran
-                            bahan kimia rumah tangga yang berbahaya. Lindungi keluarga Anda dengan teknologi terdesentralisasi.
+                        <p className="text-lg text-zinc-400 max-w-3xl mx-auto">
+                            Dari Reaksi Kimia Rumah Tangga Berbasis Jaringan Syaraf Tiruan. Platform berbasis NFT & Blockchain untuk mencegah kecelakaan akibat pencampuran bahan kimia yang berbahaya. Lindungi keluarga Anda dengan teknologi terdesentralisasi.
                         </p>
                     </div>
 
@@ -208,21 +208,22 @@ export default function Dashboard() {
                 </div>
             </section>
 
-            {/* Chemical Compatibility Checker */}
+            {/* Chemical Compatibility Checker & AI Assistant */}
             <section className="py-16 px-4">
-                <div className="max-w-4xl mx-auto">
-                    <div className="glass-card p-8 border-amber-500/20">
+                <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8">
+                    {/* Left Panel: Compatibility Checker */}
+                    <div className="glass-card p-8 border-amber-500/20 h-full flex flex-col">
                         <div className="flex items-center gap-4 mb-8">
                             <div className="p-3 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600">
                                 <AlertIcon />
                             </div>
                             <div>
-                                <h2 className="text-2xl font-bold text-white">Cek Kompatibilitas Bahan Kimia</h2>
-                                <p className="text-zinc-400">Periksa apakah dua bahan kimia aman untuk dicampurkan</p>
+                                <h2 className="text-2xl font-bold text-white">Cek Kompatibilitas</h2>
+                                <p className="text-zinc-400">Pilih dua bahan kimia untuk dicek potensi bahayanya</p>
                             </div>
                         </div>
 
-                        <div className="grid md:grid-cols-2 gap-6 mb-6">
+                        <div className="grid sm:grid-cols-2 gap-4 mb-6">
                             <div>
                                 <label className="block text-sm font-medium text-zinc-300 mb-2">Bahan Kimia 1</label>
                                 <select
@@ -233,7 +234,7 @@ export default function Dashboard() {
                                     <option value="">Pilih bahan kimia...</option>
                                     {chemicals.map((chem, i) => (
                                         <option key={i} value={chem.name} className="bg-zinc-900">
-                                            {chem.name} ({chem.formula})
+                                            {chem.name}
                                         </option>
                                     ))}
                                 </select>
@@ -248,7 +249,7 @@ export default function Dashboard() {
                                     <option value="">Pilih bahan kimia...</option>
                                     {chemicals.map((chem, i) => (
                                         <option key={i} value={chem.name} className="bg-zinc-900">
-                                            {chem.name} ({chem.formula})
+                                            {chem.name}
                                         </option>
                                     ))}
                                 </select>
@@ -257,14 +258,14 @@ export default function Dashboard() {
 
                         <button
                             onClick={handleCheckCompatibility}
-                            className="w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 text-white font-semibold text-lg hover:from-amber-600 hover:to-orange-700 transition-all shadow-lg shadow-orange-500/25"
+                            className="w-full py-4 mt-auto rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 text-white font-semibold text-lg hover:from-amber-600 hover:to-orange-700 transition-all shadow-lg shadow-orange-500/25"
                         >
-                            🔍 Cek Kompatibilitas
+                            🔍 Eksekusi Pengecekan
                         </button>
 
                         {checkResult && (
                             <div
-                                className={`mt-6 p-4 rounded-xl ${checkResult.safe
+                                className={`mt-6 p-4 rounded-xl text-sm ${checkResult.safe
                                         ? "bg-emerald-500/10 border border-emerald-500/20 text-emerald-400"
                                         : "bg-red-500/10 border border-red-500/20 text-red-400"
                                     }`}
@@ -272,6 +273,11 @@ export default function Dashboard() {
                                 <p className="font-medium">{checkResult.message}</p>
                             </div>
                         )}
+                    </div>
+
+                    {/* Right Panel: AI Chatbot */}
+                    <div className="h-full flex flex-col">
+                        <AIChatbot />
                     </div>
                 </div>
             </section>
