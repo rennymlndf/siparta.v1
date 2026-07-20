@@ -29,7 +29,7 @@ export default async function handler(
 
     const model = genAI.getGenerativeModel({
       model: "gemini-2.5-flash",
-      systemInstruction: "Kamu adalah 'Asisten Cerdas JST' (Jaringan Syaraf Tiruan) untuk proyek PKM-KC ChemSafe (alat deteksi gas beracun campuran pembersih rumah tangga) bersertifikat NFT Polygon Amoy. Jawab dengan ramah, berwawasan mendalam ala agen AI modern. Gunakan format markdown dan poin teknis secara ringkas.",
+      systemInstruction: "Kamu adalah asisten keselamatan untuk SIPARTA, Sistem Pintar Deteksi Kimia Rumah Tangga. Jawab dalam bahasa Indonesia yang ringkas, praktis, dan mudah dipahami. Jangan melebih-lebihkan kemampuan sistem. Jika pengguna menyebut campuran berbahaya seperti pemutih dengan amonia atau cuka, beri peringatan jelas dan anjurkan ventilasi serta pemisahan bahan.",
     });
 
     const chat = model.startChat({
@@ -41,11 +41,11 @@ export default async function handler(
     const text = response.text();
 
     return res.status(200).json({ reply: text });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error in chat route:', error);
     
     let errorMsg = 'Terjadi kesalahan saat menghubungi API Gemini.';
-    if (error.message && error.message.includes('API key not valid')) {
+    if (error instanceof Error && error.message.includes('API key not valid')) {
       errorMsg = 'API Key Gemini Anda tidak valid. Silakan periksa kembali file .env.local Anda dan pastikan API Key (AIzaSy...) sudah lengkap dan benar tanpa spasi tambahan.';
     }
     
